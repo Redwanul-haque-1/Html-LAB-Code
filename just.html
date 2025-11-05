@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Full page styling */
+        body {
+            margin: 0;                      /* Removes default white gap of the browser */
+            font-family: Arial, Helvetica, sans-serif;   
+            background-color: #e5e5e5;      /* Light grey outside box */
+            display: flex;                
+            /* Centers box horizontally & vertically*/
+            justify-content: center;
+            align-items: center; 
+            height: 100vh;      /* Full height of screen */
+        }
+
+        /* Main content box */
+        .login-container {
+            width: 400px;                 
+            background-color: #7ca4ca;     /* Light blue background like image */
+            padding: 135px;                 /* Space inside the box */
+            border: 5px solid #373737;        /* Dark border around the whole area */
+            border-radius: 30px;
+        }
+
+        /* Labels like Email, Password */
+        label {
+            font-size: 20px;
+            font-weight: bold;
+            display: block ;
+            margin-bottom: 20px;
+        }
+
+        /* Input text fields (Email and Password) */
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #0a0a0a;
+            border-radius: 8px;
+            margin-bottom: 50px;           /* Space between boxes */
+            font-size: 16px;
+        }
+
+        /* Login button */
+        .login-btn {
+            padding: 10px 30px;
+            font-size: 16px;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+            float: right;                   /* Moves button to the right side */
+        }
+
+        .login-btn:hover {
+            background-color: #d4b9b9;      /* Button color when mouse is over it */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email">
+
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password">
+
+        <button class="login-btn">Login</button>
+    </div>
+
+</body>
+</html>
+
