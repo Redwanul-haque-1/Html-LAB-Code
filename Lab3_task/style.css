@@ -1,0 +1,59 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f3f8;
+    margin: 0;
+    padding: 0;
+}
+ 
+
+header {
+    background-color: #6ba2d8;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 3px solid #0055aa;
+}
+
+.profile-box {
+    width: 400px;
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #003366;
+    margin-bottom: 15px;
+}
+
+.student-name {
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.bio {
+    background-color: #f9f9f9;
+    border: 3px solid #1d1b1b;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #529ce6;
+    color: white;
+    text-align: center;
+    padding: 2px ;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9em;
+}
