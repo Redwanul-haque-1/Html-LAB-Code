@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Article Comment System</title>
+    <link rel = "styleSheet" href ="Style1.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ARTICLE TEMPLATE -->
+    <article class="article" id="article1">
+        <h1>News Article Title: 1</h1>
+        <h2>Web Technologies:</h2>
+        <p>Web development refers to building, creating, and maintaining websites. 
+            It includes aspects such as web design, web publishing, web programming, and database management. 
+            It is the creation of an application that works over the internet, i.e., websites.
+        </p>
+
+        <h3>Comment Statistics</h3>
+        <p>Total Comments: <strong id="totalComments1">0</strong></p>
+        <p>Average Rating: <strong id="avgRating1">N/A</strong></p>
+
+        <h3>Leave a Comment</h3>
+        <form id="commentForm1">
+            <label>Name*</label>
+            <input id="name1" type="text">
+            <div id="errName1" class="error"></div>
+
+            <label>Email (optional)</label>
+            <input class ="text-field-email" id="email1" type="text">
+            <div id="errEmail1" class="error"></div>
+
+            <label>Comment *</label>
+            <textarea class ="text-field-comment" id="comment1" rows="2"></textarea>
+            <div id="errComment1" class="error"></div>
+
+            <label>Rating (optional)</label>
+            <div class="stars" id="stars1">
+                <span data-val="1">★</span>
+                <span data-val="2">★</span>
+                <span data-val="3">★</span>
+                <span data-val="4">★</span>
+                <span data-val="5">★</span>
+            </div>
+            <p>Selected Rating: <span id="selectedRating1">None</span></p>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <h3>Comments</h3>
+        <div id="commentsList1"></div>
+    </article>
+
+    <!-- ARTICLE 2 -->
+    <article class="article" id="article2">
+        <h1>News Article Title — 2</h1>
+        <h2>HTML</h2>
+        <p> HTML is the standard markup language for creating Web pages.</p>
+
+        <h3>Comment Statistics</h3>
+        <p>Total Comments: <strong id="totalComments2">0</strong></p>
+        <p>Average Rating: <strong id="avgRating2">N/A</strong></p>
+
+        <h3>Leave a Comment</h3>
+        <form id="commentForm2">
+            <label>Name *</label>
+            <input id="name2" type="text">
+            <div id="errName2" class="error"></div>
+
+            <label>Email (optional)</label>
+            <input  class ="text-field-email" id="email2" type="text">
+            <div id="errEmail2" class="error"></div>
+
+            <label>Comment *</label>
+            <textarea id="comment2" rows="3"></textarea>
+            <div id="errComment2" class="error"></div>
+
+            <label>Rating (optional)</label>
+            <div class="stars" id="stars2">
+                <span data-val="1">★</span>
+                <span data-val="2">★</span>
+                <span data-val="3">★</span>
+                <span data-val="4">★</span>
+                <span data-val="5">★</span>
+            </div>
+            <p>Selected Rating: <span id="selectedRating2">None</span></p>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <h3>Comments</h3>
+        <div id="commentsList2"></div>
+    </article>
+</div>
+
+<script>
+// Setup Comment System for each Article
+function setup(id) {
+    let comments = []; 
+    let rating = null;
+
+    const form = document.getElementById("commentForm" + id);
+    const nameF = document.getElementById("name" + id);
+    const emailF = document.getElementById("email" + id);
+    const commentF = document.getElementById("comment" + id);
+
+    const errName = document.getElementById("errName" + id);
+    const errEmail = document.getElementById("errEmail" + id);
+    const errComment = document.getElementById("errComment" + id);
+
+    const stars = document.querySelectorAll("#stars" + id + " span");
+    const selectedRatingText = document.getElementById("selectedRating" + id);
+
+    const totalComments = document.getElementById("totalComments" + id);
+    const avgRating = document.getElementById("avgRating" + id);
+
+    const commentsList = document.getElementById("commentsList" + id);
+
+    
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            rating = Number(star.dataset.val);
+            stars.forEach(s => s.classList.remove("active"));
+            for (let i = 0; i < rating; i++) stars[i].classList.add("active");
+            selectedRatingText.textContent = rating;
+        });
+    });
+
+    function validate() {
+        let ok = true;
+        errName.textContent = "";
+        errEmail.textContent = "";
+        errComment.textContent = "";
+
+        if (nameF.value.trim().length < 2 || nameF.value.trim().length > 50) {
+            errName.textContent = "Name should be between 2 and 50 characters";
+            ok = false;
+        }
+
+        if (emailF.value.trim() !== "" && !emailF.value.includes("@")) {
+            errEmail.textContent = "Please enter a valid email address";
+            ok = false;
+        }
+
+        if (commentF.value.trim().length < 10 || commentF.value.trim().length > 500) {
+            errComment.textContent = "Comment should be between 10 and 500 characters";
+            ok = false;
+        }
+        return ok;
+    }
+
+    function render() {
+        commentsList.innerHTML = "";
+        comments.forEach(c => {
+            const div = document.createElement("div");
+            div.className = "comment-card";
+            div.innerHTML = `
+                <strong>${c.name}</strong><br>
+                ${c.comment}<br>
+                <span style='color: #ffb400;'>${c.rating ? "★".repeat(c.rating) : ""}</span>
+            `;
+            commentsList.appendChild(div);
+        });
+
+        totalComments.textContent = comments.length;
+
+        const rated = comments.filter(c => c.rating !== null);
+        avgRating.textContent = rated.length
+            ? (rated.reduce((a,b) => a + b.rating, 0) / rated.length).toFixed(2)
+            : "N/A";
+    }
+
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+        if (!validate()) return;
+
+        comments.push({
+            name: nameF.value.trim(),
+            email: emailF.value.trim(),
+            comment: commentF.value.trim(),
+            rating: rating
+        });
+
+        form.reset();
+        stars.forEach(s => s.classList.remove("active"));
+        selectedRatingText.textContent = "None";
+        rating = null;
+
+        render();
+    });
+
+    render();
+}
+
+setup(1);
+setup(2);
+</script>
+
+</body>
+</html>

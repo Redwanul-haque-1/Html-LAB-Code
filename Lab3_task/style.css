@@ -13,12 +13,13 @@ header {
     text-align: center;
     padding: 20px;
     border-bottom: 3px solid #0055aa;
+    width: 100%;
 }
 
 .profile-box {
     width: 400px;
     background-color: #ffffff;
-    margin: 40px auto;
+    margin: 60px auto;
     padding: 15px;
     border: 2px solid #ccc;
     border-radius: 12px;

@@ -1,0 +1,42 @@
+body { 
+            font-family: Arial; 
+            background: #f2f2f2; 
+            padding: 150px; 
+        }
+        .container { max-width: 900px; margin: auto; }
+        .article { 
+            background: #e9cece;
+            padding: 20px; 
+            margin-bottom: 30px; 
+            border-radius: 8px; 
+        }
+        .comment-form input, .comment-form textarea { 
+            width: 100%; 
+            padding: 8px; 
+            margin: 6px 0 12px; }
+
+        .text-field-email {
+            margin: 10px;
+            
+        }  
+          
+        .error { 
+            color: red; 
+            font-size: 14px; 
+        }
+        .stars span { 
+            font-size: 24px; 
+            cursor: pointer; 
+            color: #de7373; 
+        }
+
+        .stars span.active { color: #ffb400; }
+
+        .comment-card { 
+            background: #fafafa; 
+            padding: 12px; 
+            border-radius: 6px; 
+            border: 1px solid #ddd; 
+            margin-top: 10px; 
+        }
+    
